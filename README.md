@@ -1,6 +1,4 @@
 # Intro
-## 22
-### sdf
 
 ```
 :echo stdpath('config')
@@ -22,7 +20,7 @@ netrw
  d -- directory
  % -- create file
 
-:TSPlaygroundToggle -- 
+:TSPlaygroundToggle -- play with AST provided by treesitter
 
 ## Troubleshooting
 
