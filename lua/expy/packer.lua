@@ -14,7 +14,15 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use { "ellisonleao/gruvbox.nvim" }
+  -- use { "morhetz/gruvbox" } -- no markdown support with treesitter
+  use({
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      config = function()
+          vim.cmd('colorscheme rose-pine')
+      end
+  })
+
 
   -- example how to translate from Plug to packer
   -- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -26,6 +34,23 @@ return require('packer').startup(function(use)
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
   use("airblade/vim-rooter")
+
+  use {
+      'VonHeikemen/lsp-zero.nvim',
+      branch = 'v3.x',
+      requires = {
+          {'williamboman/mason.nvim'},
+          {'williamboman/mason-lspconfig.nvim'},
+
+          -- LSP Support
+          {'neovim/nvim-lspconfig'},
+
+          -- Autocompletion
+          {'hrsh7th/nvim-cmp'},
+          {'hrsh7th/cmp-nvim-lsp'},
+          {'L3MON4D3/LuaSnip'},
+      }
+  }
 
 end)
 

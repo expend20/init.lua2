@@ -1,4 +1,6 @@
 # Intro
+## 22
+### sdf
 
 ```
 :echo stdpath('config')
@@ -20,7 +22,7 @@ netrw
  d -- directory
  % -- create file
 
-:TSPlaygroundToggle
+:TSPlaygroundToggle -- 
 
 ## Troubleshooting
 
@@ -31,7 +33,9 @@ Solution: `:TSInstall gitcommit`
 ## TODO
 
 - explore other fuzzy finders (telescope plugin)
-- lsp setup
+- zenmode
+- stage thunks
+
 
 
 
