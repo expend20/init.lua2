@@ -14,14 +14,14 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  -- use { "morhetz/gruvbox" } -- no markdown support with treesitter
-  use({
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      config = function()
-          vim.cmd('colorscheme rose-pine')
-      end
-  })
+  use { "sainnhe/gruvbox-material" } -- no markdown support with treesitter?
+  -- use({
+  --     'rose-pine/neovim',
+  --     as = 'rose-pine',
+  --     config = function()
+  --         vim.cmd('colorscheme rose-pine')
+  --     end
+  -- })
 
 
   -- example how to translate from Plug to packer
