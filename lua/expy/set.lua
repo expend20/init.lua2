@@ -1,10 +1,4 @@
 -- vim.opt.guicursor = ""
--- here is how check host os:
--- if vim.fn.has("win32") then
---     print("windows detected")
--- elseif vim.fn.has("unix") then
---     print("unix detected")
--- end
 
 vim.opt.list = true
 vim.opt.ignorecase = true
@@ -41,9 +35,9 @@ vim.opt.colorcolumn = "80"
 
 -- enabling clipboard for wsl UPD: currently not neeeded, fixed?
 -- https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
--- if vim.fn.has("wsl") or vim.fn.has("win32") then
---   vim.opt.clipboard = "unnamedplus"
--- end
+if vim.fn.has("wsl") or vim.fn.has("win32") then
+  vim.opt.clipboard = "unnamedplus"
+end
 
 vim.api.nvim_set_keymap("n", "<leader>t2", ":set tabstop=2<CR>:set shiftwidth=2<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>t4", ":set tabstop=4<CR>:set shiftwidth=4<CR>", {noremap = true, silent = true})
