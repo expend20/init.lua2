@@ -46,4 +46,14 @@ vim.api.nvim_set_keymap("n", "<leader>td", ":set ff=dos<CR>", {noremap = true, s
 vim.api.nvim_set_keymap("n", "<leader>tu", ":set ff=unix<CR>", {noremap = true, silent = true})
 
 
+-- Remove trailing whitespace on save
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local expyGroup = augroup('expy', {})
+autocmd({"BufWritePre"}, {
+    group = expyGroup,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})
+
 
