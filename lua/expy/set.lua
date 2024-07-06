@@ -35,8 +35,38 @@ vim.opt.colorcolumn = "80"
 
 -- enabling clipboard for wsl UPD: currently not neeeded, fixed?
 -- https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+local function execute_command(command)
+    local file = io.popen(command)
+    local output = file:read('*all')
+    file:close()
+    return output
+end
+-- Function to check if the Ubuntu version is 20.04
+local function is_ubuntu_2004()
+    local lsb_output = execute_command('lsb_release -r') -- Execute lsb_release -r command
+    local version_number = lsb_output:match('Release:%s+(%d+%.%d+)') -- Extract version number
+    if version_number == '20.04' then
+        return true
+    else
+        return false
+    end
+end
 if vim.fn.has("wsl") or vim.fn.has("win32") then
   vim.opt.clipboard = "unnamedplus"
+  if is_ubuntu_2004() then
+    vim.g.clipboard = {
+      name = 'WslClipboard',
+      copy = {
+          ['+'] = 'clip.exe',
+          ['*'] = 'clip.exe',
+      },
+      paste = {
+          ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+          ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      },
+      cache_enabled = 0,
+    }
+  end
 end
 
 vim.api.nvim_set_keymap("n", "<leader>t2", ":set tabstop=2<CR>:set shiftwidth=2<CR>", {noremap = true, silent = true})
